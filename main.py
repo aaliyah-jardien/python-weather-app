@@ -16,7 +16,7 @@ window.config(bg="#51E3F2")
 def weather():
     try:
         city = enter_label.get()
-        url = "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&​"
+        url = "https://api.openweathermap.org/data/2.5/weather?"
         weather_key = "d5f152c2169cc81875de09908d76d59a"
         params1 = {'appid': weather_key, 'q': city, 'units': 'Metric'}
         response = requests.get(url, params=params1)
@@ -28,7 +28,7 @@ def weather():
     except requests.exceptions.ConnectionError:
         messagebox.showerror("Error", "NO internet Connection")
 
-    except ValueError:
+    except (ValueError, KeyError):
         messagebox.showerror("Error", "City cannot be found")
 
 # clear button
